@@ -29,7 +29,7 @@
   },
   "scripts": {
     "start": "dotenv -e .env.development react-scripts start",
-    "build:uat": "dotenv -e .env.uat react-scripts build",
+    "build:fat": "dotenv -e .env.uat react-scripts build",
     "build:pro": "dotenv -e .env.production react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

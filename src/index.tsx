@@ -11,8 +11,6 @@ if (process.env.REACT_APP_CONSOLE_LOG === '1') {
   new VConsole();
 }
 
-console.log(process.env);
-
 ReactDOM.render(
   <HashRouter>
     <AppRoute/>
