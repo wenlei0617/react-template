@@ -2,26 +2,30 @@
  * @Author: gary 
  * @Date: 2021-04-08 15:01:43 
  * @Last Modified by: gary
- * @Last Modified time: 2021-04-08 15:15:30
+ * @Last Modified time: 2021-04-08 17:05:43
  * 通用列表组件
  */
 import { Card, Form, Table } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import { GetRowKey } from 'antd/lib/table/interface';
-import React, { useImperativeHandle, useState } from 'react';
+import { AxiosResponse } from 'axios';
+import React, { Ref, useImperativeHandle, useState } from 'react';
 import { QueryObserverResult, RefetchOptions, useQuery } from 'react-query';
 import { PAGE_SIZE } from '../../config/config';
-import { http, IResponse } from '../../utils/http';
+import { IResponse } from '../../utils/http';
+import styles from './table.module.scss';
 
-interface LumuTableProps {
-  columns: ColumnsType<any>;
+interface LumuTableProps<T> {
+  columns: ColumnsType<T>;
   api: string;
   rowKey?: GetRowKey<any>;
   searchParams?: any;
   children?: React.ReactNode;
+  fetch: (params: any) => Promise<AxiosResponse<IResponse<HttpList<any>>>>;
+  refs?: Ref<LumuTableRef>;
 }
 
-interface LumuTableSwipe {
+export interface LumuTableRef {
   refetch: (options?: RefetchOptions | undefined) => Promise<QueryObserverResult<HttpList<any>, unknown>>
 }
 
@@ -36,8 +40,8 @@ interface SearchParams {
   [key: string]: any;
 }
 
-const LumuTable = React.forwardRef<LumuTableSwipe, LumuTableProps>((props, ref) => {
-  const { children, api, searchParams, ...tableProps } = props;
+function LumuTable<T>(props: LumuTableProps<T>) {
+  const { children, api, searchParams, fetch, refs, ...tableProps } = props;
   const [form] = Form.useForm();
   const [params, setParams] = useState<SearchParams>({
     ...searchParams,
@@ -45,26 +49,28 @@ const LumuTable = React.forwardRef<LumuTableSwipe, LumuTableProps>((props, ref) 
     pageSize: PAGE_SIZE
   });
   const { isLoading, data, refetch } = useQuery([api, params], async () => {
-    const response = await http.post<IResponse<HttpList<any>>>(api, {
-      ...params
-    });
-    return response.data.data;
+    const response = await fetch(params);
+    return response.data.result;
   });
 
-  useImperativeHandle(ref, () => {
+  useImperativeHandle(refs, () => {
     return {
       refetch
     }
   })
 
   return (
-    <Card>
-      <Form form={form} onFinish={(values) => {
-        setParams({
-          ...values,
-          pageNum: 1,
-        });
-      }}>
+    <Card className={styles['card']}>
+      <Form
+        style={{marginBottom: 20}}
+        layout="inline"
+        form={form}
+        onFinish={(values) => {
+          setParams({
+            ...values,
+            pageNum: 1,
+          });
+        }}>
         {children}
       </Form>
       <Table
@@ -88,6 +94,6 @@ const LumuTable = React.forwardRef<LumuTableSwipe, LumuTableProps>((props, ref) 
         {...tableProps}></Table>
     </Card>
   )
-});
+};
 
 export default LumuTable;

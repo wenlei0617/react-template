@@ -14,10 +14,12 @@ PUBLIC_URL 打包资源路径
 - assets 公共资源
 - config 配置文件
 - hooks 公用hooks
-- service API服务
 - store 状态管理
 - utils 工具函数
 - views 页面
+  - *-interface.ts 模块接口
+  - *-routes.ts 模块路由
+  - service 模块接口封装
 
 ### 计划功能命令行
 创建模块路由
