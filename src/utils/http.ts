@@ -2,7 +2,7 @@
  * @Author: gary 
  * @Date: 2021-04-08 13:36:56 
  * @Last Modified by: gary
- * @Last Modified time: 2021-04-08 14:04:49
+ * @Last Modified time: 2021-04-08 15:33:27
  * http请求封装
  */
 import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios';
@@ -26,7 +26,7 @@ export interface IResponse<T> {
 
 http.interceptors.request.use((config: AxiosRequestConfig) => {
   // ! 授权信息
-  config.headers['token'] = '53ecaa4cfc909316f8cfe36f158dc7618d756c16afe6a5dae18d560a3d45e0fc';
+  config.headers['Authorization'] = '77bcb6ff0e278c9efd15c51ba49422fd';
   // config.headers['Authorization'] = getToken();
   config.headers['deviceType'] = 3;
   config.validateStatus = (status) => {

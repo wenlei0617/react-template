@@ -19,7 +19,7 @@ PUBLIC_URL 打包资源路径
 - utils 工具函数
 - views 页面
 
-### 命令行
+### 计划功能命令行
 创建模块路由
 1. lumu-cli create route order;
 创建常规页面
