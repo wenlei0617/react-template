@@ -1,46 +1,28 @@
-# Getting Started with Create React App
+### 项目配置
+通过.env.*文件设置通用配置
+.env.development 开发环境
+.env.fat 测试环境
+.env.production 生产环境
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+REACT_APP_WEBSITE_NAME 项目名称
+REACT_APP_WEB_UUID 项目唯一uuid,自行生成
+REACT_APP_API_CONFIG api路径
+REACT_APP_PAGE_SIZE 分页数
+PUBLIC_URL 打包资源路径
 
-## Available Scripts
+### 目录结构
+- assets 公共资源
+- config 配置文件
+- hooks 公用hooks
+- service API服务
+- store 状态管理
+- utils 工具函数
+- views 页面
 
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 命令行
+创建模块路由
+1. lumu-cli create route order;
+创建常规页面
+2. lumu-cli create page order-detail
+创建列表页面
+3. lumu-cli create list order-list
