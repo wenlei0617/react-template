@@ -1,13 +1,14 @@
 /*
  * @Author: gary 
  * @Date: 2021-04-08 13:36:01 
- * @Last Modified by:   gary 
- * @Last Modified time: 2021-04-08 13:36:01 
+ * @Last Modified by: gary
+ * @Last Modified time: 2021-04-09 17:11:15
  * 安全布局组件
  */
 import { Button, Layout, Popconfirm } from 'antd';
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
+import { FOOTER_TEXT } from '../../config/config';
 import { RouteItem } from '../../config/routes';
 import { getToken, setToken } from '../../utils/utils';
 import BreadcrumbsLayout from './breadcrumbs-layout';
@@ -21,9 +22,11 @@ interface SecurityLayoutProps {
 const SecurityLayout: React.FC<SecurityLayoutProps> = (props) => {
   const { children, routes } = props;
   const [collapsed, setCollapsed] = useState(false);
+  const history = useHistory();
 
   const loginOut = () => {
     setToken('');
+    history.replace('/login');
   }
 
   if (!getToken()) {
@@ -49,7 +52,7 @@ const SecurityLayout: React.FC<SecurityLayoutProps> = (props) => {
           <BreadcrumbsLayout routes={routes}></BreadcrumbsLayout>
           <div className={styles['layout-content']}>{children}</div>
         </Layout.Content>
-        <Layout.Footer className={styles['layout-footer']}>Created by 成都肯定科技</Layout.Footer>
+        <Layout.Footer className={styles['layout-footer']}>{FOOTER_TEXT}</Layout.Footer>
       </Layout>
     </Layout>
   );

@@ -2,7 +2,7 @@
  * @Author: gary 
  * @Date: 2021-04-08 13:36:56 
  * @Last Modified by: gary
- * @Last Modified time: 2021-04-08 15:33:27
+ * @Last Modified time: 2021-04-09 17:47:24
  * http请求封装
  */
 import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios';
@@ -19,15 +19,14 @@ export const http = axios.create({
 });
 
 export interface IResponse<T> {
-  data: T,
-  errorMsg: string,
+  result: T,
+  message: string,
   code: number
 }
 
 http.interceptors.request.use((config: AxiosRequestConfig) => {
   // ! 授权信息
-  config.headers['Authorization'] = '77bcb6ff0e278c9efd15c51ba49422fd';
-  // config.headers['Authorization'] = getToken();
+  config.headers['Authorization'] = getToken();
   config.headers['deviceType'] = 3;
   config.validateStatus = (status) => {
     return (status >= 200 && status < 300) || [401, 429].includes(status)
@@ -44,7 +43,7 @@ http.interceptors.response.use(<T>(response: AxiosResponse<IResponse<T>>) => {
   } else if (response.status === 200 && response.data.code === 200) {
     return response;
   } else if (response.status === 200) {
-    message.error(response.data.errorMsg);
+    message.error(response.data.message);
     return Promise.reject(response);
   } else if (response.status === 401) {
     // ! 重定向
