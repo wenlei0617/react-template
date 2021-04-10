@@ -1,11 +1,9 @@
-import { Drawer } from 'antd';
 import React from 'react';
+import BasicsLayout from '../../../components/layouts/basics-layout';
 
 const OrderDetail: React.FC = () => {
   return (
-    <Drawer width={'100vw'}>
-      order-detail
-    </Drawer>
+    <BasicsLayout></BasicsLayout>
   )
 }
 

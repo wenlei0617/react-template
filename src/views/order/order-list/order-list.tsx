@@ -2,14 +2,16 @@ import { Button, Form, Input, Row } from 'antd';
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import LumuTable from '../../../components/table/table';
+import { http } from '../../../utils/http';
 
 const OrderList: React.FC = () => {
   const table = useRef(null);
 
   return (
     <LumuTable
-      ref={table}
+      refs={table}
       api="/v1/user/list"
+      fetch={() => http.get('/')}
       rowKey={data => data.id}
       columns={[
         { title: '序号', render: (_, __, index) => index + 1 },
