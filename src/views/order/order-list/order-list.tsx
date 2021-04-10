@@ -1,4 +1,4 @@
-import { Button, Form, Input, Row } from 'antd';
+import { Button, Form, Input, Row, Col } from 'antd';
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import LumuTable from '../../../components/table/table';
@@ -20,14 +20,6 @@ const OrderList: React.FC = () => {
           title: '操作', render: () => <Link to="/order/1">详情</Link>
         }
       ]}>
-      <Row gutter={[24, 24]}>
-        <Form.Item label="test" name="test">
-          <Input placeholder="测试" />
-        </Form.Item>
-        <Form.Item>
-          <Button htmlType="submit">搜索</Button>
-        </Form.Item>
-      </Row>
     </LumuTable>
   )
 }
