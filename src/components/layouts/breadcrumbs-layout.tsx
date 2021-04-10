@@ -34,7 +34,7 @@ const BreadcrumbsLayout: React.FC<{ routes: RouteItem[] }> = ({ routes }) => {
   }
 
   return (
-    <Breadcrumb style={{ margin: 16 }}>
+    <Breadcrumb style={{ margin: '16px 16px 0' }}>
       {breadcrumb()}
     </Breadcrumb>
   )

@@ -29,3 +29,18 @@ export const setToken = (value: string) => {
   }
   sessionStorage.setItem(TOKEN, value);
 }
+
+/**
+ * @description 设置col的布局
+ * @param flex 
+ */
+export const colLayout = (flex: 1 | 2 = 1) => {
+  return {
+    xs: 24,
+    sm: 24,
+    md: 12,
+    lg: flex === 1 ? 8 : 12,
+    xl: 6 * flex,
+    xxl: 6 * flex
+  }
+}

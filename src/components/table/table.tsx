@@ -13,7 +13,7 @@ import React, { Ref, useImperativeHandle, useState } from 'react';
 import { QueryObserverResult, RefetchOptions, useQuery } from 'react-query';
 import { PAGE_SIZE } from '../../config/config';
 import { IResponse } from '../../utils/http';
-import styles from './table.module.scss';
+import BasicsLayout from '../layouts/basics-layout';
 
 interface LumuTableProps<T> {
   columns: ColumnsType<T>;
@@ -60,7 +60,7 @@ function LumuTable<T>(props: LumuTableProps<T>) {
   })
 
   return (
-    <Card className={styles['card']}>
+    <BasicsLayout>
       <Form
         style={{ marginBottom: 20 }}
         layout="inline"
@@ -92,7 +92,7 @@ function LumuTable<T>(props: LumuTableProps<T>) {
         dataSource={data?.list}
         loading={isLoading}
         {...tableProps}></Table>
-    </Card>
+    </BasicsLayout>
   )
 };
 
