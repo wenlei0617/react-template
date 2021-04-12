@@ -38,7 +38,7 @@ http.interceptors.request.use((config: AxiosRequestConfig) => {
 });
 
 http.interceptors.response.use(<T>(response: AxiosResponse<IResponse<T>>) => {
-  if (response.config.url && response.config.url.indexOf('https://up-z1.qiniup.com') > -1 && response.status === 200) {
+  if (response.config.url && response.config.url.indexOf('qiniup.com') > -1 && response.status === 200) {
     return response;
   } else if (response.status === 200 && response.data.code === 200) {
     return response;

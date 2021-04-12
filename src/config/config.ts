@@ -1,5 +1,5 @@
 // 分页配置
-export const PAGE_SIZE = Number(process.env.REACT_APP_PAGE_SIZE);
+export const PAGE_SIZE = 20;
 
 // 技术服务热线
 export const HOT_LINE = 'xxxxxx';
